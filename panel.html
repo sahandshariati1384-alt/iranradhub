@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پنل مدیریت کلینیک | شبکه انجمن‌های رادیولوژی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="panel.css">
+</head>
+<body>
+
+<header class="pnl-header">
+  <div class="pnl-header-inner">
+    <a href="../index.html" class="pnl-brand"><span class="pnl-brand-mark">☢</span> پنل کلینیک</a>
+    <button class="pnl-logout-link" id="logoutBtn" style="display:none">خروج از پنل ⏻</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ LOGIN SCREEN ============ -->
+  <section id="loginScreen" class="pnl-section">
+    <div class="login-card">
+      <span class="login-eyebrow">ورود مدیر کلینیک</span>
+      <h1>ورود به پنل کلینیک</h1>
+      <p class="login-desc">با نام کاربری و رمزی که هنگام تایید ثبت کلینیک از مدیر سایت دریافت کرده‌اید وارد شوید.</p>
+      <form id="loginForm">
+        <input type="text" name="username" placeholder="نام کاربری" required autocomplete="username">
+        <input type="password" name="password" placeholder="رمز عبور" required autocomplete="current-password">
+        <button type="submit" class="btn-pnl-primary">ورود 🔐</button>
+        <p class="login-note" id="loginNote"></p>
+      </form>
+      <div class="login-hint">
+        هنوز حساب کلینیک نساخته‌اید؟ از <a href="../index.html#clinics-directory">فهرست کلینیک‌ها</a> فرم «ثبت کلینیک» را پر کنید؛
+        بعد از تایید مدیر سایت، نام کاربری و رمز برایتان مشخص می‌شود.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD ============ -->
+  <section id="dashScreen" class="pnl-section" style="display:none">
+    <div class="dash-hero">
+      <span class="dash-eyebrow">خوش آمدید</span>
+      <h1 id="clinicNameHeading"></h1>
+      <a href="room.html" id="openRoomLink" target="_blank" class="btn-pnl-secondary" style="display:inline-flex;margin-top:10px">💬 باز کردن کانال و چت عمومی کلینیک</a>
+    </div>
+
+    <div class="pnl-tabs" id="pnlTabs">
+      <button class="pnl-tab active" data-tab="appointments">📅 نوبت‌ها</button>
+      <button class="pnl-tab" data-tab="gallery">🖼️ گالری تصاویر</button>
+      <button class="pnl-tab" data-tab="messages">💬 پیام‌ با بیماران</button>
+      <button class="pnl-tab" data-tab="reviews">⭐ نظرات و رضایت بیماران</button>
+      <button class="pnl-tab" data-tab="docs">📜 مدارک پزشک</button>
+      <button class="pnl-tab" data-tab="bio">🪪 بیو و پروفایل</button>
+      <button class="pnl-tab" data-tab="settings">⚙️ تنظیمات کلینیک</button>
+    </div>
+
+    <!-- Appointments -->
+    <div class="pnl-tab-panel active" id="tab-appointments">
+      <div class="pnl-stats" id="apptStats"></div>
+      <div class="pnl-filter-row" id="apptFilter">
+        <button class="chip active" data-status="all">همه</button>
+        <button class="chip" data-status="pending">در انتظار تایید</button>
+        <button class="chip" data-status="confirmed">تاییدشده</button>
+        <button class="chip" data-status="cancelled">لغوشده</button>
+      </div>
+      <div id="apptList"></div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="pnl-tab-panel" id="tab-gallery">
+      <form class="pnl-inline-form" id="galleryForm">
+        <input type="url" name="image_url" placeholder="لینک تصویر (URL)" required>
+        <input type="text" name="caption" placeholder="توضیح کوتاه تصویر (اختیاری)">
+        <button type="submit" class="btn-pnl-secondary">افزودن به گالری ➕</button>
+      </form>
+      <p class="pnl-hint">تصویر را ابتدا در باکت Storage سایت (یا هر سرویس میزبانی تصویر) آپلود کنید و لینک مستقیم آن را اینجا وارد کنید.</p>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+
+    <!-- Messages -->
+    <div class="pnl-tab-panel" id="tab-messages">
+      <div class="msg-list" id="msgList"></div>
+      <form class="pnl-inline-form" id="replyForm">
+        <select name="target" id="replyTarget"></select>
+        <input type="text" name="message" placeholder="پاسخ خود را بنویسید..." required>
+        <button type="submit" class="btn-pnl-secondary">ارسال پاسخ ✉️</button>
+      </form>
+    </div>
+
+    <!-- Reviews -->
+    <div class="pnl-tab-panel" id="tab-reviews">
+      <div class="pnl-stats" id="reviewStats"></div>
+      <div id="reviewsList"></div>
+    </div>
+
+    <!-- Doctor documents -->
+    <div class="pnl-tab-panel" id="tab-docs">
+      <form class="pnl-inline-form" id="docsForm">
+        <input type="text" name="title" placeholder="عنوان مدرک (مثلاً: پروانه بورد تخصصی رادیولوژی)" required>
+        <label class="rm-file-btn-inline">
+          📎 انتخاب فایل
+          <input type="file" id="docFileInput" accept="image/*,.pdf" required style="display:none">
+        </label>
+        <span class="pnl-hint" id="docFileName" style="margin:0"></span>
+        <button type="submit" class="btn-pnl-secondary">افزودن مدرک ➕</button>
+      </form>
+      <p class="pnl-hint">مدارک تاییدشده (پروانه فعالیت، بورد تخصصی، گواهی‌های دوره) اینجا نمایش داده می‌شوند و در صفحه‌ی عمومی کلینیک هم قابل مشاهده‌اند تا اعتماد بیماران را جلب کنند.</p>
+      <div id="docsList"></div>
+    </div>
+
+    <!-- Bio / Profile -->
+    <div class="pnl-tab-panel" id="tab-bio">
+      <form class="pnl-settings-form" id="bioForm">
+        <label>عکس پروفایل / لوگوی کلینیک
+          <label class="rm-file-btn-inline">
+            🖼️ انتخاب عکس
+            <input type="file" id="bioLogoInput" accept="image/*" style="display:none">
+          </label>
+          <span class="pnl-hint" id="bioLogoName" style="margin:0"></span>
+        </label>
+        <img id="bioLogoPreview" src="" alt="" style="display:none;width:90px;height:90px;border-radius:50%;object-fit:cover;border:1px solid var(--border-hair)">
+        <label>بیوگرافی کلینیک (برای نمایش عمومی)<textarea name="about" id="bioAboutInput" rows="5" placeholder="درباره کلینیک، تخصص‌ها، سابقه فعالیت..." style="padding:12px;border-radius:10px;border:1px solid var(--border-hair);background:var(--bg-panel-2);color:var(--text-primary);font-family:inherit"></textarea></label>
+        <button type="submit" class="btn-pnl-primary">ذخیره بیو 💾</button>
+        <p class="login-note" id="bioNote"></p>
+      </form>
+    </div>
+
+    <!-- Settings -->
+    <div class="pnl-tab-panel" id="tab-settings">
+      <form class="pnl-settings-form" id="settingsForm">
+        <label>نام کلینیک<input type="text" name="name" required></label>
+        <label>پزشک متخصص مسئول فنی<input type="text" name="doctor"></label>
+        <label>آدرس دقیق<input type="text" name="address" required></label>
+        <label>شماره تماس<input type="text" name="phone" required></label>
+        <label>ساعات کاری<input type="text" name="hours"></label>
+        <label>خدمات (با کاما جدا کنید)<input type="text" name="specialties"></label>
+        <button type="submit" class="btn-pnl-primary">ذخیره تغییرات 💾</button>
+        <p class="login-note" id="settingsNote"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pnl-footer">
+  <p>پنل مدیریت کلینیک — شبکه انجمن‌های علمی رادیولوژی</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="panel.js"></script>
+</body>
+</html>

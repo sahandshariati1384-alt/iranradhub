@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>انجمن علمی رادیولوژی | خانه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="depth-orb o1" aria-hidden="true"></div>
+<div class="depth-orb o2" aria-hidden="true"></div>
+<canvas id="skeletonCanvas" class="hero-skeleton-3d" aria-hidden="true"></canvas>
+
+<!-- ریل نور کناری (شبیه پرفراژ فیلم رادیولوژی) -->
+<div class="sprocket-rail" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">☢</span>
+      <span class="brand-text">انجمن علمی <strong>رادیولوژی</strong></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#about" class="nav-link">درباره انجمن</a>
+      <a href="#board" class="nav-link">هیئت مدیره</a>
+      <a href="#gallery" class="nav-link">گالری تصاویر</a>
+      <a href="#library" class="nav-link">کتابخانه</a>
+      <a href="#education" class="nav-link">مطالب آموزشی</a>
+      <a href="#articles" class="nav-link">مقالات</a>
+      <a href="#links" class="nav-link">سایت‌های مهم</a>
+      <a href="#videos" class="nav-link">فیلم‌های آموزشی</a>
+      <a href="#jobs" class="nav-link">کاریابی</a>
+      <a href="#webinars" class="nav-link">کارگاه‌ها و وبینارها</a>
+      <a href="#premium" class="nav-link">منابع ویژه اعضا</a>
+      <a href="#qa" class="nav-link">پرسش از متخصص</a>
+      <a href="education/magazine.html" class="nav-link">📖 مجله آموزشی</a>
+      <a href="tester/exam.html" class="nav-link">📝 آزمون جامع تکنسینی</a>
+      <a href="#clinics-directory" class="nav-link">🏥 فهرست کلینیک‌ها</a>
+      <a href="#global-careers" class="nav-link">🌍 مهاجرت و کار خارج از کشور</a>
+      <a href="#network-hub" class="nav-link">شبکه انجمن‌ها</a>
+      <a href="#contact" class="nav-link">تماس با ما</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="باز و بسته کردن منو" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-scan" aria-hidden="true"></div>
+    <div class="dicom-crosshair" aria-hidden="true"></div>
+    <div class="dicom-ruler" aria-hidden="true"></div>
+    <div class="dicom-frame" aria-hidden="true"><span></span></div>
+    <div class="dicom-readout tl" aria-hidden="true">PAT: <b>ANJOMAN-RADIOLOGY</b><br>SER: 001 / IMG: 01</div>
+    <div class="dicom-readout tr" aria-hidden="true">WW 400 / WL 40<br>THK 5.0mm</div>
+    <div class="dicom-readout bl" aria-hidden="true">همدان، ایران <span class="blink">●</span> REC</div>
+    <div class="dicom-readout br" aria-hidden="true">FOV 380 · 512×512</div>
+
+    <div class="hero-reticle" id="heroReticle" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <p class="eyebrow">انجمن علمی دانشجویی و تخصصی رادیولوژی همدان</p>
+      <h1 class="hero-title">تصویری روشن از <span>آینده رادیولوژی</span></h1>
+      <p class="hero-desc">
+        محلی برای گردهمایی پژوهشگران، دانشجویان و متخصصان رادیولوژی؛ جایی برای به اشتراک‌گذاری مقالات،
+        منابع آموزشی، تصاویر بالینی و فیلم‌های تخصصی — با نگاهی دقیق، مثل خواندن یک فیلم روی لایت‌باکس.
+      </p>
+      <div class="hero-actions">
+        <a href="#board" class="btn btn-primary">آشنایی با هیئت مدیره</a>
+        <a href="#education" class="btn btn-ghost">ورود به منابع آموزشی</a>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-ring"></div>
+      <span>عضو رسمی شبکه انجمن‌های علمی رادیولوژی</span>
+    </div>
+  </section>
+
+  <div class="category-strip">
+    <div class="category-scroll">
+      <a href="education/magazine.html" class="category-item"><div class="category-icon">📖</div><span>مجله آموزشی</span></a>
+      <a href="tester/exam.html" class="category-item"><div class="category-icon">📝</div><span>آزمون جامع</span></a>
+      <a href="#jobs" class="category-item"><div class="category-icon">💼</div><span>کاریابی</span></a>
+      <a href="#webinars" class="category-item"><div class="category-icon">🎓</div><span>وبینارها</span></a>
+      <a href="#premium" class="category-item"><div class="category-icon">📁</div><span>منابع ویژه</span></a>
+      <a href="#qa" class="category-item"><div class="category-icon">💬</div><span>پرسش و پاسخ</span></a>
+      <a href="#research" class="category-item"><div class="category-icon">🔬</div><span>همکاری پژوهشی</span></a>
+      <a href="#clinics-directory" class="category-item"><div class="category-icon">🏥</div><span>فهرست کلینیک‌ها</span></a>
+      <a href="#global-careers" class="category-item"><div class="category-icon">🌍</div><span>مهاجرت و کار خارج</span></a>
+      <a href="#network-hub" class="category-item"><div class="category-icon">🏛️</div><span>شبکه انجمن‌ها</span></a>
+    </div>
+  </div>
+
+  <div class="stat-ticker">
+    <div class="stat-ticker-inner">
+      <div class="stat-ticker-item"><b>+۳۰۰</b><span>عضو فعال</span></div>
+      <div class="stat-ticker-item"><b>+۴۵</b><span>مقاله و پروتکل</span></div>
+      <div class="stat-ticker-item"><b>+۱۲</b><span>دانشگاه عضو شبکه</span></div>
+      <div class="stat-ticker-item"><b id="jobsStatCount">+۸</b><span>آگهی استخدام فعال</span></div>
+    </div>
+  </div>
+
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section about" orbit-flow orbit-right id="about"><span class="floating-bone" aria-hidden="true" style="top:10%;left:6%">🦴</span><span class="floating-bone" aria-hidden="true" style="bottom:8%;right:8%;animation-delay:2s">☢</span>
+    <div class="section-head">
+      <p class="eyebrow">درباره ما</p>
+      <h2>انجمنی برای دیده‌شدن دقیق‌تر</h2>
+    </div>
+    <div class="about-grid">
+      <p class="about-text">
+        انجمن علمی رادیولوژی با هدف توسعه دانش تخصصی، حمایت از پژوهش‌های دانشجویی و ایجاد بستری برای
+        تبادل تجربه میان اعضا شکل گرفته است. ما باور داریم هر تصویر پزشکی، یک روایت دقیق از بدن انسان
+        است؛ روایتی که برای خوانده‌شدن درست، به دانش، تمرین و همکاری علمی نیاز دارد.
+      </p>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-num">۶</span>
+          <span class="stat-label">کمیته تخصصی فعال</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+۲۰۰</span>
+          <span class="stat-label">منبع آموزشی گردآوری‌شده</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">۱۲</span>
+          <span class="stat-label">رویداد علمی در سال</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOARD ============ -->
+  <section class="section board" id="board">
+    <div class="section-head">
+      <p class="eyebrow">ساختار اجرایی</p>
+      <h2>هیئت مدیره انجمن</h2>
+      <p class="section-desc">هر کمیته، یک فریم از فعالیت انجمن را روشن نگه می‌دارد.</p>
+    </div>
+
+    <div class="coverflow" id="boardCoverflow">
+      <div class="coverflow-track" id="boardTrack">
+      <article class="board-card coverflow-item">
+        <div class="board-frame">📚</div>
+        <h3>دبیر کل</h3>
+        <p>مسئول عالی برنامه ریزی،راهبردی،هماهنگی و نظارت بر تمامی فعالیت های علمی،پژوهشی و اجرایی انجمن و نماینده ی رسمی آن در تعاملات دانشگاهی و بین انجمنی است.</p>
+      </article>
+      <article class="board-card coverflow-item">
+        <div class="board-frame">📚</div>
+        <h3>دبیر پژوهشی</h3>
+        <p>هدایت پروژه‌های پژوهشی، داوری طرح‌ها و ارتباط با ژورنال‌های علمی رادیولوژی.</p>
+      </article>
+      <article class="board-card coverflow-item">
+        <div class="board-frame">🎓</div>
+        <h3>دبیر آموزشی</h3>
+        <p>برنامه‌ریزی کارگاه‌ها، وبینارها و تدوین محتوای آموزشی برای اعضا.</p>
+      </article>
+      <article class="board-card coverflow-item">
+        <div class="board-frame">💠</div>
+        <h3>دبیر مالی</h3>
+        <p>مدیریت بودجه، حامیان مالی و شفافیت گزارش‌های مالی انجمن.</p>
+      </article>
+      <article class="board-card coverflow-item">
+        <div class="board-frame">🗂️</div>
+        <h3>دبیر اجرایی</h3>
+        <p>هماهنگی رویدادها، زمان‌بندی برنامه‌ها و پیگیری امور اجرایی روزمره.</p>
+      </article>
+      <article class="board-card coverflow-item">
+        <div class="board-frame">🧭</div>
+        <h3>نایب دبیر</h3>
+        <p>پشتیبانی از دبیر اصلی، پیگیری مصوبات و جانشینی در جلسات.</p>
+      </article>
+      <article class="board-card coverflow-item">
+        <div class="board-frame">📣</div>
+        <h3>روابط عمومی</h3>
+        <p>مدیریت اطلاع‌رسانی، شبکه‌های اجتماعی و ارتباط با سایر انجمن‌ها.</p>
+      </article>
+      </div>
+    </div>
+    <div class="coverflow-nav">
+      <button id="boardPrev" aria-label="قبلی">›</button>
+      <button id="boardNext" aria-label="بعدی">‹</button>
+    </div>
+    <div class="coverflow-dots" id="boardDots"></div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section gallery" orbit-flow orbit-left id="gallery">
+    <div class="section-head">
+      <p class="eyebrow">آرشیو تصویری</p>
+      <h2>گالری تصاویر</h2>
+      <p class="section-desc">نمونه‌تصاویر بالینی و آموزشی اعضا — روی هر قاب نگه‌دارید تا روشن شود.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="film-frame"><div class="film-inner">CT قفسه سینه</div></div>
+      <div class="film-frame"><div class="film-inner">MRI مغز</div></div>
+      <div class="film-frame"><div class="film-inner">سونوگرافی شکم</div></div>
+      <div class="film-frame"><div class="film-inner">رادیوگرافی ساده</div></div>
+      <div class="film-frame"><div class="film-inner">آنژیوگرافی</div></div>
+      <div class="film-frame"><div class="film-inner">ماموگرافی</div></div>
+      <div class="film-frame"><div class="film-inner">فلوروسکوپی</div></div>
+      <div class="film-frame"><div class="film-inner">پت‌اسکن</div></div>
+    </div>
+  </section>
+
+  <!-- ============ LIBRARY ============ -->
+  <section class="section library" orbit-flow orbit-right id="library">
+    <div class="section-head">
+      <p class="eyebrow">منابع مکتوب</p>
+      <h2>کتابخانه انجمن</h2>
+    </div>
+    <div class="library-grid">
+      <article class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-info">
+          <h3>اصول تفسیر تصاویر رادیولوژی</h3>
+          <p>مرجع پایه برای دانشجویان سال اول تا سوم رادیولوژی.</p>
+        </div>
+      </article>
+      <article class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-info">
+          <h3>آناتومی مقطعی کاربردی</h3>
+          <p>راهنمای تصویری آناتومی برای خواندن دقیق‌تر مقاطع CT و MRI.</p>
+        </div>
+      </article>
+      <article class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-info">
+          <h3>فیزیک تصویربرداری پزشکی</h3>
+          <p>مبانی فیزیک دستگاه‌های تصویربرداری و کنترل کیفی.</p>
+        </div>
+      </article>
+      <article class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-info">
+          <h3>موارد بالینی نادر</h3>
+          <p>مجموعه‌ای از کیس‌های آموزشی گردآوری‌شده توسط اعضا.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="section education" orbit-flow orbit-left id="education"><span class="floating-bone" aria-hidden="true" style="top:6%;right:5%;animation-delay:1s">🧬</span>
+    <div class="section-head">
+      <p class="eyebrow">یادگیری</p>
+      <h2>مطالب آموزشی</h2>
+    </div>
+    <div class="edu-grid">
+      <article class="edu-card">
+        <span class="edu-tag">کارگاه</span>
+        <h3>خواندن سیستماتیک فیلم CT</h3>
+        <p>یک روش گام‌به‌گام برای بررسی منظم مقاطع سی‌تی‌اسکن.</p>
+      </article>
+      <article class="edu-card">
+        <span class="edu-tag">راهنما</span>
+        <h3>پروتکل‌های آماده‌سازی بیمار</h3>
+        <p>نکات عملی پیش از انجام MRI و CT با کنتراست.</p>
+      </article>
+      <article class="edu-card">
+        <span class="edu-tag">چک‌لیست</span>
+        <h3>گزارش‌نویسی استاندارد</h3>
+        <p>ساختار پیشنهادی برای نگارش گزارش‌های رادیولوژی.</p>
+      </article>
+      <article class="edu-card">
+        <span class="edu-tag">دوره</span>
+        <h3>مبانی سونوگرافی تشخیصی</h3>
+        <p>دوره مقدماتی برای آشنایی با اصول اولتراسوند.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLES ============ -->
+  <section class="section articles" orbit-flow orbit-right id="articles">
+    <div class="section-head">
+      <p class="eyebrow">پژوهش</p>
+      <h2>مقالات علمی</h2>
+    </div>
+    <div class="articles-list">
+      <article class="article-row">
+        <span class="article-date">۱۴۰۳</span>
+        <div>
+          <h3>ارزیابی دقت تشخیصی MRI در ضایعات کبدی</h3>
+          <p>مروری بر مطالعات اخیر و مقایسه حساسیت روش‌های تصویربرداری.</p>
+        </div>
+      </article>
+      <article class="article-row">
+        <span class="article-date">۱۴۰۳</span>
+        <div>
+          <h3>کاربرد هوش مصنوعی در تفسیر رادیوگرافی قفسه سینه</h3>
+          <p>بررسی الگوریتم‌های کمک‌تشخیص و جایگاه آن‌ها در کار بالینی.</p>
+        </div>
+      </article>
+      <article class="article-row">
+        <span class="article-date">۱۴۰۲</span>
+        <div>
+          <h3>کاهش دز تشعشع در پروتکل‌های کودکان</h3>
+          <p>راهکارهای عملی برای تصویربرداری ایمن‌تر در بیماران اطفال.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ LINKS ============ -->
+  <section class="section links" orbit-flow orbit-left id="links">
+    <div class="section-head">
+      <p class="eyebrow">منابع بین‌المللی</p>
+      <h2>سایت‌های مهم رادیولوژی</h2>
+    </div>
+    <div class="links-grid">
+      <a class="link-card" href="https://www.rsna.org" target="_blank" rel="noopener">
+        <h3>RSNA</h3>
+        <p>انجمن رادیولوژی آمریکای شمالی</p>
+      </a>
+      <a class="link-card" href="https://radiopaedia.org" target="_blank" rel="noopener">
+        <h3>Radiopaedia</h3>
+        <p>دانشنامه آزاد کیس‌های رادیولوژی</p>
+      </a>
+      <a class="link-card" href="https://www.acr.org" target="_blank" rel="noopener">
+        <h3>ACR</h3>
+        <p>کالج رادیولوژی آمریکا</p>
+      </a>
+      <a class="link-card" href="https://www.esr.org" target="_blank" rel="noopener">
+        <h3>ESR</h3>
+        <p>انجمن رادیولوژی اروپا</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ VIDEOS ============ -->
+  <section class="section videos" orbit-flow orbit-right id="videos">
+    <div class="section-head">
+      <p class="eyebrow">آموزش تصویری</p>
+      <h2>فیلم‌های آموزشی</h2>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumb"><span class="play-btn">▶</span></div>
+        <h3>مبانی خواندن CT اسکن مغز</h3>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb"><span class="play-btn">▶</span></div>
+        <h3>تکنیک‌های پوزیشن‌دهی در رادیوگرافی</h3>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb"><span class="play-btn">▶</span></div>
+        <h3>آشنایی با پروتکل‌های MRI قلب</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="section newsletter" orbit-flow orbit-left id="newsletter">
+    <div class="newsletter-panel">
+      <div class="newsletter-text">
+        <span class="slice-tag">هدیه عضویت</span>
+        <h2>خبرنامه انجمن رادیولوژی</h2>
+        <p>ایمیلت رو بذار تا «چک‌لیست آمادگی آزمون رادیولوژی» رو رایگان بگیری و از جدیدترین مقالات و پروتکل‌ها باخبر شی.</p>
+      </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="ایمیل شما" required>
+        <button type="submit" class="btn btn-primary">دریافت چک‌لیست رایگان</button>
+      </form>
+    </div>
+    <p class="form-note" id="newsletterNote" style="margin-top:14px;text-align:center"></p>
+  </section>
+
+  <!-- ============ WEBINARS / MONETIZATION ============ -->
+  <section class="section webinars" id="webinars">
+    <div class="section-head">
+      <p class="eyebrow">آموزش زنده</p>
+      <h2>کارگاه‌ها و وبینارهای تخصصی</h2>
+      <p class="section-desc">ثبت‌نام آنلاین با تخفیف ویژه اعضای انجمن.</p>
+    </div>
+    <div class="stackflow" id="webinarStack">
+      <article class="event-card stackflow-card" data-title="تفسیر پیشرفته CT قفسه سینه">
+        <div class="event-top">
+          <div><span class="edu-tag">کارگاه آنلاین</span><h3 style="margin-top:8px">تفسیر پیشرفته CT قفسه سینه</h3></div>
+          <div class="event-date-badge">پنج‌شنبه<b>۱۵</b>مرداد</div>
+        </div>
+        <div class="event-body">
+          <p>بررسی الگوهای افتراقی بیماری‌های ریوی روی مقاطع HRCT با ارائه کیس‌های واقعی.</p>
+          <span class="event-price">اعضا: ۱۵۰,۰۰۰ ت · غیراعضا: ۲۹۰,۰۰۰ ت</span>
+        </div>
+        <div class="event-foot">
+          <span class="event-org">مدرس: دبیر آموزشی انجمن</span>
+          <button class="btn btn-primary btn-small event-register-btn">ثبت‌نام</button>
+        </div>
+      </article>
+      <article class="event-card stackflow-card" data-title="مبانی MRI قلب">
+        <div class="event-top">
+          <div><span class="edu-tag">وبینار</span><h3 style="margin-top:8px">مبانی MRI قلب</h3></div>
+          <div class="event-date-badge">سه‌شنبه<b>۲۷</b>مرداد</div>
+        </div>
+        <div class="event-body">
+          <p>آشنایی با سکانس‌های پایه، پروتکل‌بندی و خوانش موارد شایع کاردیوMRI.</p>
+          <span class="event-price free">رایگان برای اعضای انجمن</span>
+        </div>
+        <div class="event-foot">
+          <span class="event-org">همکاری: کمیته پژوهشی</span>
+          <button class="btn btn-primary btn-small event-register-btn">ثبت‌نام</button>
+        </div>
+      </article>
+      <article class="event-card stackflow-card" data-title="بانک سوالات آزمون دستیاری">
+        <div class="event-top">
+          <div><span class="edu-tag">دوره فشرده</span><h3 style="margin-top:8px">جمع‌بندی آزمون دستیاری رادیولوژی</h3></div>
+          <div class="event-date-badge">آدینه<b>۰۹</b>شهریور</div>
+        </div>
+        <div class="event-body">
+          <p>مرور فشرده مباحث پرتکرار به همراه تحلیل سوالات دوره‌های اخیر.</p>
+          <span class="event-price">اعضا: ۳۵۰,۰۰۰ ت · غیراعضا: ۵۹۰,۰۰۰ ت</span>
+        </div>
+        <div class="event-foot">
+          <span class="event-org">مدرس: هیئت مدیره انجمن</span>
+          <button class="btn btn-primary btn-small event-register-btn">ثبت‌نام</button>
+        </div>
+      </article>
+    </div>
+    <div class="stackflow-controls">
+      <button id="webinarNext">وبینار بعدی ‹</button>
+      <button id="webinarPrev">› قبلی</button>
+    </div>
+    <p class="section-desc" style="margin-top:18px;font-size:.8rem">
+      * این بخش نسخه نمایشی ثبت‌نام است. برای دریافت واقعی وجه، به یک درگاه پرداخت متصل می‌شود.
+    </p>
+  </section>
+
+  <!-- ============ PREMIUM RESOURCES ============ -->
+  <section class="section premium" orbit-flow orbit-right id="premium">
+    <div class="section-head">
+      <p class="eyebrow">اشتراک ویژه</p>
+      <h2>منابع ویژه اعضا</h2>
+      <p class="section-desc">جزوات دست‌نویس، پروتکل‌های آماده و بانک سوالات — با کد عضویت باز می‌شود.</p>
+    </div>
+    <div class="premium-grid">
+      <article class="premium-card locked"><h3>جزوه دست‌نویس فیزیک تصویربرداری</h3><p>خلاصه کامل مبحث فیزیک با تصاویر دست‌نویس اساتید.</p><span class="chip chip-locked">قفل</span></article>
+      <article class="premium-card locked"><h3>پروتکل‌های آماده MRI/CT</h3><p>بیش از ۴۰ پروتکل استاندارد آماده استفاده بالینی.</p><span class="chip chip-locked">قفل</span></article>
+      <article class="premium-card locked"><h3>بانک سوالات آزمون ارتقا</h3><p>مجموعه سوالات چند دوره اخیر با پاسخ تشریحی.</p><span class="chip chip-locked">قفل</span></article>
+    </div>
+    <form class="unlock-row" id="unlockForm" style="max-width:420px;margin-top:24px">
+      <input type="text" name="code" placeholder="کد عضویت را وارد کنید">
+      <button type="submit" class="btn btn-primary btn-small">باز کردن</button>
+    </form>
+    <p class="form-note" id="unlockNote"></p>
+  </section>
+
+  <!-- ============ Q&A ============ -->
+  <section class="section qa" orbit-flow orbit-left id="qa">
+    <div class="section-head">
+      <p class="eyebrow">پاسخ متخصص</p>
+      <h2>پرسش از متخصص</h2>
+      <p class="section-desc">سوال بالینی یا آموزشی‌ات رو بپرس؛ اساتید و هیئت مدیره پاسخ می‌دهند.</p>
+    </div>
+    <form class="mini-form" id="qaForm">
+      <div class="row2">
+        <input type="text" name="name" placeholder="نام (اختیاری)">
+        <input type="text" name="question" placeholder="سوال شما" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ثبت سوال</button>
+      <p class="form-note" id="qaNote"></p>
+    </form>
+    <div class="qa-list" id="qaList"></div>
+  </section>
+
+  <!-- ============ CONTENT REQUEST ============ -->
+  <section class="section content-request" orbit-flow orbit-right id="content-request">
+    <div class="section-head">
+      <p class="eyebrow">درخواست محتوا</p>
+      <h2>چه محتوایی نیاز داری؟</h2>
+      <p class="section-desc">مثلاً: «پروتکل تصویربرداری از تومورهای مغزی را می‌خواهم».</p>
+    </div>
+    <form class="mini-form" id="contentRequestForm">
+      <div class="row2">
+        <input type="text" name="name" placeholder="نام (اختیاری)">
+        <input type="text" name="topic" placeholder="موضوع درخواستی" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ارسال درخواست</button>
+      <p class="form-note" id="contentRequestNote"></p>
+    </form>
+    <div class="table-list" id="contentRequestList" style="margin-top:22px"></div>
+  </section>
+
+  <!-- ============ RESEARCH MATCHING ============ -->
+  <section class="section research" orbit-flow orbit-left id="research"><span class="floating-bone" aria-hidden="true" style="bottom:10%;left:4%;animation-delay:1.5s">🔬</span>
+    <div class="section-head">
+      <p class="eyebrow">بانک پژوهشگران</p>
+      <h2>همکاری پژوهشی</h2>
+      <p class="section-desc">پروژه‌ات را ثبت کن و همکار (نویسنده هم‌کار) پیدا کن.</p>
+    </div>
+    <div class="research-grid" id="researchList" style="margin-bottom:26px"></div>
+    <form class="mini-form" id="researchForm">
+      <div class="row2">
+        <input type="text" name="name" placeholder="نام شما">
+        <input type="text" name="field" placeholder="حوزه پژوهش">
+      </div>
+      <input type="text" name="title" placeholder="عنوان پروژه" required>
+      <textarea name="desc" rows="2" placeholder="توضیح کوتاه و نوع همکاری موردنیاز"></textarea>
+      <input type="text" name="contact" placeholder="ایمیل یا آیدی تماس">
+      <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ثبت پروژه</button>
+      <p class="form-note" id="researchNote"></p>
+    </form>
+  </section>
+
+  <!-- ============ PROFESSORS ============ -->
+  <section class="section professors" id="professors"><span class="floating-bone" aria-hidden="true" style="top:8%;right:6%;animation-delay:.5s">🦴</span>
+    <div class="section-head">
+      <p class="eyebrow">اعتباربخشی علمی</p>
+      <h2>اساتید و نخبگان</h2>
+    </div>
+    <div class="carousel-3d-viewport" id="profCarousel">
+     <div class="carousel-3d-ring">
+      <article class="prof-card carousel-3d-item"><div class="prof-avatar">👨‍⚕️</div><h3>دکتر ------</h3><p class="prof-role">استاد رادیولوژی</p><p>پژوهشگر برتر در تصویربرداری قلب و عروق.</p></article>
+      <article class="prof-card carousel-3d-item"><div class="prof-avatar">👩‍⚕️</div><h3>دکتر ------</h3><p class="prof-role">دانشیار رادیولوژی</p><p>سرپرست پروژه‌های هوش مصنوعی در تشخیص تصویری.</p></article>
+      <article class="prof-card carousel-3d-item"><div class="prof-avatar">👨‍⚕️</div><h3>دکتر ------</h3><p class="prof-role">فوق‌تخصص نورورادیولوژی</p><p>مشاور علمی کمیته پژوهشی انجمن.</p></article>
+     </div>
+    </div>
+  </section>
+
+  <!-- ============ SPONSORS ============ -->
+  <section class="section sponsors" orbit-flow orbit-right id="sponsors">
+    <div class="section-head">
+      <p class="eyebrow">همکاری تجاری</p>
+      <h2>حامیان آموزشی</h2>
+      <p class="section-desc">شرکت‌های تجهیزات پزشکی همکار با انجمن.</p>
+    </div>
+    <div class="sponsor-strip">
+      <div class="sponsor-slot">جای لوگوی شما</div>
+      <div class="sponsor-slot">جای لوگوی شما</div>
+      <div class="sponsor-slot">جای لوگوی شما</div>
+      <div class="sponsor-slot">جای لوگوی شما</div>
+    </div>
+    <a href="#contact" class="btn btn-ghost sponsor-cta">درخواست همکاری تبلیغاتی</a>
+  </section>
+
+  <!-- ============ JOB BOARD ============ -->
+  <section class="section jobs" id="jobs">
+    <div class="section-head">
+      <p class="eyebrow">فرصت شغلی</p>
+      <h2>پنل کاریابی رادیولوژی</h2>
+      <p class="section-desc">مراکز و کلینیک‌های تصویربرداری آگهی استخدام ثبت می‌کنند؛ فارغ‌التحصیلان مستقیم رزومه می‌فرستند.</p>
+    </div>
+    <div class="job-filters panel-toolbar" id="jobFilters">
+      <button class="filter-chip active" data-job-filter="all">همه شهرها</button>
+    </div>
+    <div class="fanflow" id="jobList"></div>
+    <p class="fanflow-hint">روی هر آگهی کلیک کن تا وسط بیاد و واضح‌تر دیده بشه</p>
+
+    <div class="section-head" style="margin-top:52px">
+      <p class="eyebrow">برای مراکز و کلینیک‌ها</p>
+      <h2>ثبت آگهی استخدام</h2>
+    </div>
+    <form class="mini-form" id="jobPostForm">
+      <div class="row2">
+        <input type="text" name="clinic" placeholder="نام کلینیک / مرکز تصویربرداری" required>
+        <input type="text" name="city" placeholder="شهر" required>
+      </div>
+      <div class="row2">
+        <input type="text" name="title" placeholder="عنوان شغلی (مثلاً تکنسین رادیولوژی رنگی)" required>
+        <select name="type">
+          <option value="تمام‌وقت">تمام‌وقت</option>
+          <option value="پاره‌وقت">پاره‌وقت</option>
+          <option value="شیفت شب">شیفت شب</option>
+          <option value="کارورزی">کارورزی</option>
+        </select>
+      </div>
+      <div class="row2">
+        <input type="text" name="salary" placeholder="حقوق / مزایا (اختیاری)">
+        <input type="text" name="contact" placeholder="راه تماس (تلفن یا ایمیل)" required>
+      </div>
+      <textarea name="desc" rows="2" placeholder="توضیح شغل و شرایط موردنیاز"></textarea>
+      <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ثبت آگهی</button>
+      <p class="form-note" id="jobPostNote"></p>
+    </form>
+  </section>
+
+  <!-- ============ CLINICS DIRECTORY ============ -->
+  <section class="section clinics-directory" id="clinics-directory">
+    <div class="section-head">
+      <p class="eyebrow">نقشه‌ی مراکز تصویربرداری</p>
+      <h2>فهرست کلینیک‌ها و مراکز رادیولوژی ایران</h2>
+      <p class="section-desc">استان و شهرت را انتخاب کن تا کلینیک‌های تصویربرداری همون منطقه، با آدرس، پزشک متخصص و شماره تماس نشون داده بشن.</p>
+    </div>
+
+    <div class="demo-banner" style="margin-bottom:24px">
+      ⚠️ این فهرست با ثبت مستقیم خود کلینیک‌ها (پس از تایید مدیر سایت) ساخته می‌شود، نه از منبع رسمی
+      واحد. پیش از مراجعه، بهتر است صحت آدرس و شماره تماس را از طریق تماس تلفنی یا نقشه تایید کنید.
+    </div>
+
+    <div class="mini-form" style="flex-direction:row;flex-wrap:wrap;gap:12px;margin-bottom:28px;max-width:100%">
+      <select id="provinceSelect" style="flex:1;min-width:200px">
+        <option value="">انتخاب استان...</option>
+      </select>
+      <select id="citySelect" style="flex:1;min-width:200px">
+        <option value="">ابتدا استان را انتخاب کنید</option>
+      </select>
+    </div>
+
+    <div class="assoc-grid" id="clinicResults" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))"></div>
+
+    <p style="text-align:center;margin-top:24px;font-size:.85rem;color:var(--text-muted)">
+      مدیر یک کلینیک ثبت‌شده هستید؟ <a href="clinic/panel.html" style="color:var(--accent-cyan);text-decoration:underline">وارد پنل مدیریت کلینیک شوید</a>
+      — نوبت‌ها، گالری تصاویر و پیام بیماران را از آنجا مدیریت کنید.
+    </p>
+
+    <div class="section-head" style="margin-top:52px">
+      <p class="eyebrow">ثبت رایگان</p>
+      <h2>کلینیک یا مرکز تصویربرداری شما اینجا نیست؟</h2>
+      <p class="section-desc">فرم زیر را پر کن؛ پس از بررسی و تایید، مرکز شما در فهرست بالا نمایش داده می‌شود.</p>
+    </div>
+    <form class="mini-form" id="clinicSubmitForm">
+      <div class="row2">
+        <input type="text" name="name" placeholder="نام کلینیک / مرکز" required>
+        <input type="text" name="doctor" placeholder="پزشک متخصص مسئول فنی">
+      </div>
+      <div class="row2">
+        <select name="province" id="submitProvinceSelect" required>
+          <option value="">استان...</option>
+        </select>
+        <select name="city" id="submitCitySelect" required>
+          <option value="">ابتدا استان را انتخاب کنید</option>
+        </select>
+      </div>
+      <input type="text" name="address" placeholder="آدرس دقیق" required>
+      <div class="row2">
+        <input type="text" name="phone" placeholder="شماره تماس" required>
+        <input type="text" name="hours" placeholder="ساعات کاری (مثلاً ۸ تا ۲۰)">
+      </div>
+      <input type="text" name="specialties" placeholder="خدمات (مثلاً: سی‌تی‌اسکن، MRI، سونوگرافی، ماموگرافی)">
+      <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ارسال برای تایید</button>
+      <p class="form-note" id="clinicSubmitNote"></p>
+    </form>
+  </section>
+
+  <!-- ============ INTERNATIONAL MIGRATION & CAREERS ============ -->
+  <section class="section global-careers" id="global-careers">
+    <div class="section-head">
+      <p class="eyebrow">مسیر بین‌المللی</p>
+      <h2>مهاجرت و کاریابی تکنسین‌های رادیولوژی در خارج از کشور</h2>
+      <p class="section-desc">راهنمای کلی مسیر اخذ مجوز کار در چند مقصد رایج، به همراه آگهی‌های استخدام بین‌المللی و درخواست مشاوره.</p>
+    </div>
+
+    <div class="demo-banner" style="margin-bottom:28px">
+      ⚠️ این بخش یک راهنمای کلی و آموزشی است، نه مشاوره‌ی حقوقی مهاجرت. قوانین ویزا، مجوز کار و
+      نهادهای صادرکننده‌ی مجوز مدام تغییر می‌کنند — پیش از هر تصمیم، حتماً از سایت رسمی هر نهاد
+      (لینک هرکدوم پایین آورده شده) یا یک مشاور مهاجرت مجاز، آخرین شرایط را استعلام بگیرید.
+    </div>
+
+    <div class="prof-grid" id="countryGrid">
+      <article class="prof-card country-card">
+        <div class="prof-avatar">🇺🇸</div>
+        <h3>آمریکا</h3>
+        <p class="prof-role">نهاد مجوز: ARRT</p>
+        <p>مدرک باید از یک موسسه‌ی مورد تایید ARRT باشد (اکثر مدارک ایرانی مستقیماً در فهرست تایید نیستند)؛ آزمون ARRT الزامی است. ARRT خودش هیچ نقشی در صدور ویزای کار ندارد — این بخش کاملاً جداست.</p>
+        <a href="https://www.arrt.org/pages/earn-arrt-credentials/how-to-apply/international-inquiries" target="_blank" rel="noopener" class="mag-nav-link" style="display:inline-block;margin-top:10px;font-size:.75rem">سایت رسمی ARRT ↗</a>
+      </article>
+      <article class="prof-card country-card">
+        <div class="prof-avatar">🇬🇧</div>
+        <h3>بریتانیا</h3>
+        <p class="prof-role">نهاد مجوز: HCPC</p>
+        <p>ثبت‌نام نزد HCPC الزامی و قانونی است؛ آزمون زبان معمولاً IELTS با میانگین ۷ (هر بخش حداقل ۶.۵). مدارک باید ترجمه و تاییدشده ارسال شوند؛ زمان بررسی معمولاً چند ماه طول می‌کشد.</p>
+        <a href="https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/" target="_blank" rel="noopener" class="mag-nav-link" style="display:inline-block;margin-top:10px;font-size:.75rem">سایت رسمی HCPC ↗</a>
+      </article>
+      <article class="prof-card country-card">
+        <div class="prof-avatar">🇨🇦</div>
+        <h3>کانادا</h3>
+        <p class="prof-role">نهاد مجوز: CAMRT / نهادهای استانی</p>
+        <p>ارزیابی مدرک تحصیلی و عضویت در نهاد استانی مربوطه لازم است؛ آزمون زبان (IELTS یا CELPIP) و معمولاً مسیر مهاجرت از طریق Express Entry یا برنامه‌های استانی (PNP) دنبال می‌شود.</p>
+      </article>
+      <article class="prof-card country-card">
+        <div class="prof-avatar">🇩🇪</div>
+        <h3>آلمان</h3>
+        <p class="prof-role">عنوان شغلی: MTRA</p>
+        <p>لازم است مدرک از طریق فرآیند «Anerkennung» (تایید معادل‌سازی) نزد مرجع ایالتی مربوطه بررسی شود؛ تسلط به زبان آلمانی معمولاً حداقل سطح B2 موردنیاز است.</p>
+      </article>
+      <article class="prof-card country-card">
+        <div class="prof-avatar">🇦🇺</div>
+        <h3>استرالیا</h3>
+        <p class="prof-role">نهاد مجوز: ثبت‌نام ایالتی / ASMIRT</p>
+        <p>ارزیابی مدرک و تجربه‌ی کاری، آزمون زبان (IELTS یا OET) و بررسی مسیر مهاجرت مهارتی (Skilled Migration) از مراحل اصلی است.</p>
+      </article>
+    </div>
+
+    <div class="section-head" style="margin-top:52px">
+      <p class="eyebrow">فرصت‌های بین‌المللی</p>
+      <h2>آگهی‌های استخدام خارج از کشور</h2>
+    </div>
+    <div class="job-filters panel-toolbar" id="globalJobFilters">
+      <button class="filter-chip active" data-global-filter="all">همه کشورها</button>
+    </div>
+    <div class="job-grid" id="globalJobList"></div>
+
+    <div class="section-head" style="margin-top:52px">
+      <p class="eyebrow">مشاوره رایگان</p>
+      <h2>درخواست مشاوره مهاجرت و کاریابی خارج از کشور</h2>
+    </div>
+    <form class="mini-form" id="migrationForm">
+      <div class="row2">
+        <input type="text" name="name" placeholder="نام و نام خانوادگی" required>
+        <input type="email" name="email" placeholder="ایمیل" required>
+      </div>
+      <div class="row2">
+        <input type="text" name="country" placeholder="کشور مقصد موردنظر" required>
+        <input type="text" name="experience" placeholder="سابقه کار / مدرک تحصیلی">
+      </div>
+      <textarea name="message" rows="2" placeholder="سوال یا توضیح بیشتر (اختیاری)"></textarea>
+      <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ارسال درخواست مشاوره</button>
+      <p class="form-note" id="migrationNote"></p>
+    </form>
+  </section>
+
+  <!-- ============ NETWORK TEASER ============ -->
+  <section class="section network" id="network">
+    <div class="network-teaser">
+      <div class="newsletter-text">
+        <span class="slice-tag">شبکه سراسری</span>
+        <h2>شبکه انجمن‌های علمی دانشگاه‌ها</h2>
+        <p>رویدادها، فراخوان‌های همکاری و آرشیو انجمن‌های علمی سایر دانشگاه‌ها را ببین یا انجمن خودت را عضو کن.</p>
+        <div class="network-logos" style="margin-top:16px">
+          <div class="network-logo-dot">🏛️</div><div class="network-logo-dot">🏛️</div><div class="network-logo-dot">🏛️</div>
+        </div>
+      </div>
+      <a href="#network-hub" class="btn btn-primary">ورود به شبکه انجمن‌ها</a>
+    </div>
+  </section>
+
+
+  <div id="network-hub">
+  <section class="uni-hero">
+    <span class="slice-tag">شبکه سراسری دانشگاه‌ها</span>
+    <h1>یک بستر مشترک برای همه انجمن‌های علمی رادیولوژی</h1>
+    <p>تقویم سراسری رویدادها، فراخوان همکاری پژوهشی بین‌دانشگاهی، و آرشیو اختصاصی هر انجمن — همه در یک شبکه.</p>
+  </section>
+
+  <div class="demo-banner" style="max-width:900px;margin:0 auto 10px">
+    ⚠️ این صفحه یک نسخه نمایشی (دمو) از منطق شبکه است و از حافظه مرورگر شما (localStorage) استفاده می‌کند؛
+    اطلاعات فقط روی همین مرورگر ذخیره می‌شود و بین کاربران مختلف مشترک نیست. برای عملکرد واقعی و چندکاربره،
+    باید به یک دیتابیس واقعی (مثل Supabase) وصل شود — نمونه کد آن را جدا برایتان آماده کرده‌ایم.
+  </div>
+
+  <!-- ============ DIRECTORY ============ -->
+  <section class="section" id="directory">
+    <div class="section-head">
+      <p class="eyebrow">اعضای شبکه</p>
+      <h2>انجمن‌های همکار</h2>
+      <p class="section-desc">هر دانشگاه پس از تایید، در این فهرست و در تقویم رویدادها دیده می‌شود.</p>
+    </div>
+    <div class="assoc-grid" id="assocDirectory"></div>
+  </section>
+
+  <!-- ============ CALENDAR ============ -->
+  <section class="section" id="calendar">
+    <div class="section-head">
+      <p class="eyebrow">تقویم سراسری</p>
+      <h2>رویدادهای همه انجمن‌ها</h2>
+    </div>
+    <div class="event-grid" id="networkEventsList"></div>
+  </section>
+
+  <!-- ============ COLLAB CALLS ============ -->
+  <section class="section" id="collab">
+    <div class="section-head">
+      <p class="eyebrow">فراخوان همکاری</p>
+      <h2>فراخوان‌های پژوهشی بین‌دانشگاهی</h2>
+      <p class="section-desc">هر انجمن عضو، از داخل پنل خودش می‌تواند فراخوان ثبت کند.</p>
+    </div>
+    <div class="research-grid" id="collabList"></div>
+  </section>
+
+  <!-- ============ SHARED CONTENT ============ -->
+  <section class="section" id="shared-content">
+    <div class="section-head">
+      <p class="eyebrow">بانک اشتراک‌گذاری منابع</p>
+      <h2>محتوای منتشرشده انجمن‌ها</h2>
+      <p class="section-desc">جزوه، اسلاید و ویدیوهایی که انجمن‌ها منتشر و شما تایید کرده‌اید.</p>
+    </div>
+    <div class="table-list" id="publishedContentList"></div>
+  </section>
+
+  <!-- ============ JOIN FORM ============ -->
+  <section class="section" id="join">
+    <div class="section-head">
+      <p class="eyebrow">پیوستن به شبکه</p>
+      <h2>فرم درخواست عضویت انجمن</h2>
+      <p class="section-desc">پس از تایید مدیر کل شبکه، نام کاربری و رمز عبور پنل برایتان مشخص می‌شود.</p>
+    </div>
+    <form class="mini-form" id="joinForm">
+      <div class="row2">
+        <input type="text" name="name" placeholder="نام انجمن علمی" required>
+        <input type="text" name="university" placeholder="نام دانشگاه" required>
+      </div>
+      <div class="row2">
+        <input type="text" name="city" placeholder="شهر" required>
+        <input type="text" name="secretary" placeholder="نام دبیر انجمن" required>
+      </div>
+      <div class="row2">
+        <input type="email" name="email" placeholder="ایمیل" required>
+        <input type="text" name="phone" placeholder="شماره تماس">
+      </div>
+      <textarea name="desc" rows="2" placeholder="توضیح کوتاه درباره انجمن"></textarea>
+      <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ارسال درخواست عضویت</button>
+      <p class="form-note" id="joinNote"></p>
+    </form>
+  </section>
+
+  <!-- ============ LOGIN ============ -->
+  <section class="section" id="login">
+    <div class="section-head" style="text-align:center;max-width:100%">
+      <p class="eyebrow" style="text-align:center">ورود</p>
+      <h2>ورود دبیران انجمن‌ها / مدیر کل شبکه</h2>
+    </div>
+    <div class="login-box">
+      <div class="tab-bar" style="justify-content:center">
+        <button class="tab-btn active" data-login-tab="assoc">ورود دبیر انجمن</button>
+        <button class="tab-btn" data-login-tab="admin">ورود مدیر کل</button>
+      </div>
+      <div class="tab-panel active" id="loginTab-assoc">
+        <form class="mini-form" id="assocLoginForm">
+          <input type="text" name="username" placeholder="نام کاربری" required>
+          <input type="password" name="password" placeholder="رمز عبور" required>
+          <button type="submit" class="btn btn-primary btn-small">ورود به پنل انجمن</button>
+        </form>
+      </div>
+      <div class="tab-panel" id="loginTab-admin">
+        <form class="mini-form" id="adminLoginForm">
+          <input type="password" name="password" placeholder="رمز عبور مدیر کل" required>
+          <button type="submit" class="btn btn-primary btn-small">ورود به پنل مدیریت</button>
+        </form>
+        <p class="form-note" style="opacity:.7">رمز نمایشی: admin1404 (فقط برای دمو — در نسخه واقعی حتماً باید با بک‌اند امن جایگزین شود)</p>
+      </div>
+      <p class="form-note" id="loginNote"></p>
+    </div>
+  </section>
+
+  <!-- ============ ASSOCIATION DASHBOARD ============ -->
+  <section class="section" id="assocDash" style="display:none">
+    <div class="section-head">
+      <p class="eyebrow" id="assocDashWelcome">پنل انجمن</p>
+      <h2>پنل مدیریت انجمن شما</h2>
+    </div>
+    <div class="dash-grid">
+      <div class="dash-side">
+        <button class="dash-tab-btn active" data-dash-tab="profile">پروفایل انجمن</button>
+        <button class="dash-tab-btn" data-dash-tab="newContent">ارسال محتوا</button>
+        <button class="dash-tab-btn" data-dash-tab="newEvent">ثبت رویداد</button>
+        <button class="dash-tab-btn" data-dash-tab="newCollab">فراخوان همکاری</button>
+        <button class="dash-tab-btn" data-dash-tab="myItems">ارسال‌های من</button>
+        <button id="assocLogoutBtn" style="color:#e88484;margin-top:14px">خروج از پنل</button>
+      </div>
+      <div class="dash-main">
+        <div class="dash-tab-panel active" id="dashTab-profile"></div>
+        <div class="dash-tab-panel" id="dashTab-newContent" style="display:none">
+          <form class="mini-form" id="contentSubmitForm">
+            <input type="text" name="title" placeholder="عنوان محتوا" required>
+            <select name="type">
+              <option value="جزوه">جزوه</option>
+              <option value="اسلاید">اسلاید</option>
+              <option value="ویدیو">ویدیو</option>
+              <option value="مقاله">مقاله</option>
+            </select>
+            <textarea name="body" rows="3" placeholder="توضیح محتوا"></textarea>
+            <input type="text" name="link" placeholder="لینک فایل/ویدیو (مثلاً گوگل‌درایو یا آپارات)">
+            <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ارسال برای تایید</button>
+            <p class="form-note" id="contentSubmitNote"></p>
+          </form>
+        </div>
+        <div class="dash-tab-panel" id="dashTab-newEvent" style="display:none">
+          <form class="mini-form" id="eventSubmitForm">
+            <input type="text" name="title" placeholder="عنوان رویداد" required>
+            <input type="text" name="date" placeholder="تاریخ (مثلاً ۲۰ مرداد)">
+            <textarea name="desc" rows="2" placeholder="توضیح رویداد"></textarea>
+            <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ارسال برای تایید</button>
+            <p class="form-note" id="eventSubmitNote"></p>
+          </form>
+        </div>
+        <div class="dash-tab-panel" id="dashTab-newCollab" style="display:none">
+          <form class="mini-form" id="collabSubmitForm">
+            <input type="text" name="title" placeholder="عنوان فراخوان" required>
+            <textarea name="desc" rows="2" placeholder="توضیح پروژه و نوع همکاری موردنیاز"></textarea>
+            <input type="text" name="contact" placeholder="راه تماس">
+            <button type="submit" class="btn btn-primary btn-small" style="align-self:flex-start">ارسال برای تایید</button>
+            <p class="form-note" id="collabSubmitNote"></p>
+          </form>
+        </div>
+        <div class="dash-tab-panel" id="dashTab-myItems" style="display:none">
+          <div class="table-list" id="myItemsList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ADMIN DASHBOARD ============ -->
+  <section class="section" id="adminDash" style="display:none">
+    <div class="section-head">
+      <p class="eyebrow">مدیر کل شبکه</p>
+      <h2>صف تایید محتوا</h2>
+    </div>
+    <div class="tab-bar">
+      <button class="tab-btn active" data-admin-tab="assocs">درخواست‌های عضویت</button>
+      <button class="tab-btn" data-admin-tab="content">محتوای در انتظار</button>
+      <button class="tab-btn" data-admin-tab="events">رویدادهای در انتظار</button>
+      <button class="tab-btn" data-admin-tab="collabs">فراخوان‌های در انتظار</button>
+      <button class="tab-btn" data-admin-tab="clinics">کلینیک‌های در انتظار</button>
+    </div>
+    <div class="tab-panel active" id="adminTab-assocs"><div class="table-list" id="pendingAssocsList"></div></div>
+    <div class="tab-panel" id="adminTab-content"><div class="table-list" id="pendingContentList"></div></div>
+    <div class="tab-panel" id="adminTab-events"><div class="table-list" id="pendingEventsList"></div></div>
+    <div class="tab-panel" id="adminTab-collabs"><div class="table-list" id="pendingCollabsList"></div></div>
+    <div class="tab-panel" id="adminTab-clinics"><div class="table-list" id="pendingClinicsList"></div></div>
+    <button id="adminLogoutBtn" class="btn btn-ghost" style="margin-top:20px">خروج از پنل مدیریت</button>
+  </section>
+
+  </div>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" orbit-flow orbit-left id="contact">
+    <div class="contact-panel">
+      <div class="section-head">
+        <p class="eyebrow">در ارتباط باشید</p>
+        <h2>با ما همکاری کنید</h2>
+        <p class="section-desc">برای عضویت، همکاری پژوهشی یا ارسال محتوای آموزشی، پیام بگذارید.</p>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" placeholder="نام و نام خانوادگی" required>
+          <input type="email" placeholder="ایمیل" required>
+        </div>
+        <textarea rows="4" placeholder="پیام شما"></textarea>
+        <button type="submit" class="btn btn-primary">ارسال پیام</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© انجمن علمی رادیولوژی — تمامی حقوق محفوظ است.</p>
+  <div class="footer-links">
+    <a href="#about">درباره ما</a>
+    <a href="#board">هیئت مدیره</a>
+    <a href="#network-hub">شبکه انجمن‌ها</a>
+    <a href="#contact">تماس</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="supabase-config.js" defer></script>
+<script src="iran-provinces-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

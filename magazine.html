@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مجله آموزشی تکنسین‌های رادیولوژی | رادیوگرافی · CT · MRI · گرافی رنگی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="magazine.css">
+</head>
+<body>
+
+<header class="mag-header">
+  <div class="mag-header-inner">
+    <a href="../index.html" class="mag-brand"><span class="mag-brand-mark">☢</span> مجله آموزشی رادیولوژی</a>
+    <a href="../tester/exam.html" class="mag-nav-link">📝 برو به آزمون جامع تکنسینی</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="mag-hero">
+    <span class="mag-eyebrow">ویژه‌ی تکنسین‌های رادیولوژی، CT و MRI</span>
+    <h1>مجله‌ی آموزشی: از فیزیک پایه تا مطالعات کنتراست پیشرفته</h1>
+    <p>هر مقاله را بخوان، دام‌های رایج امتحانی را یاد بگیر، و بعد وارد <a href="../tester/exam.html">آزمون جامع</a> شو تا دانشت را واقعاً بسنجی.</p>
+  </section>
+
+  <div class="mag-tabs" id="magTabs"></div>
+
+  <section class="mag-featured" id="magFeatured"></section>
+
+  <div class="mag-grid" id="magGrid"></div>
+
+</main>
+
+<!-- ============ READER OVERLAY ============ -->
+<div class="mag-reader" id="magReader" aria-hidden="true">
+  <div class="mag-reader-inner">
+    <button class="mag-reader-close" id="magReaderClose">✕ بستن</button>
+    <span class="mag-reader-tag" id="readerTag"></span>
+    <h2 id="readerTitle"></h2>
+    <div class="mag-reader-meta" id="readerMeta"></div>
+    <div class="mag-reader-content" id="readerContent"></div>
+    <a href="../tester/exam.html" class="mag-reader-cta">📝 حالا این مبحث را در آزمون تمرین کن</a>
+  </div>
+</div>
+
+<footer class="mag-footer">
+  <p>© مجله آموزشی انجمن علمی رادیولوژی</p>
+  <a href="../index.html">بازگشت به سایت اصلی</a>
+</footer>
+
+<script src="magazine-data.js"></script>
+<script src="magazine.js"></script>
+</body>
+</html>

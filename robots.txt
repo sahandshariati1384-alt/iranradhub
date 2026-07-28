@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /clinic/panel.html
+Disallow: /network/
+
+Sitemap: https://iranradhub.ir/sitemap.xml

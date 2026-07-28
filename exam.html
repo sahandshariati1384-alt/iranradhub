@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آزمون‌ساز تکنسین‌های رادیولوژی | CT · MRI · رادیوگرافی · گرافی رنگی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+
+<header class="exam-header">
+  <div class="exam-header-inner">
+    <a href="../index.html" class="exam-brand"><span class="exam-brand-mark">☢</span> آزمون‌ساز تکنسین رادیولوژی</a>
+    <a href="../education/magazine.html" class="exam-nav-link">📖 بخش آموزشی مجله‌ای</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ SETUP SCREEN ============ -->
+  <section id="setupScreen" class="exam-section">
+    <div class="setup-hero">
+      <span class="setup-eyebrow">ویژه‌ی تکنسین‌های رادیولوژی، CT و MRI</span>
+      <h1>آزمون جامع فوق‌حرفه‌ای رادیولوژی</h1>
+      <p>پوشش کامل رادیوگرافی عمومی، سی‌تی اسکن، ام‌آرآی، رادیوگرافی رنگی (مطالعات کنتراست) و ایمنی پرتو — با پاسخ‌نامه‌ی آموزشی همراه با دام‌های رایج برای هر گزینه.</p>
+    </div>
+
+    <div class="setup-stats" id="bankStats"></div>
+
+    <div class="setup-card">
+      <h3>۱) دسته‌بندی موضوعی</h3>
+      <div class="chip-row" id="categoryChips"></div>
+
+      <h3>۲) سطح دشواری</h3>
+      <div class="chip-row" id="difficultyChips"></div>
+
+      <h3>۳) تعداد سوالات این آزمون</h3>
+      <div class="chip-row" id="countChips"></div>
+
+      <h3>۴) زمان‌سنج</h3>
+      <div class="chip-row" id="timerChips"></div>
+
+      <div class="setup-summary" id="setupSummary"></div>
+      <button class="btn-start" id="startExamBtn">شروع آزمون 🚀</button>
+    </div>
+
+    <div class="setup-card contrast-highlight">
+      <h3>🎯 ماژول اختصاصی: رادیوگرافی رنگی (مطالعات کنتراست)</h3>
+      <p>بلع باریوم، انمای باریوم، IVU، HSG، فیستولوگرافی، سیالوگرافی، میلوگرافی، آرتروگرافی و اورتروگرافی — به‌صورت جداگانه و متمرکز.</p>
+      <button class="btn-start btn-outline" id="startContrastBtn">فقط آزمون گرافی رنگی 🖍️</button>
+    </div>
+  </section>
+
+  <!-- ============ EXAM SCREEN ============ -->
+  <section id="examScreen" class="exam-section" style="display:none">
+    <div class="exam-topbar">
+      <div class="exam-progress-wrap">
+        <div class="exam-progress-bar"><div class="exam-progress-fill" id="progressFill"></div></div>
+        <span id="progressLabel">سوال ۱ از ۱۰</span>
+      </div>
+      <div class="exam-timer" id="examTimer">۰۰:۰۰</div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-meta">
+        <span class="q-tag" id="qCategoryTag"></span>
+        <span class="q-tag q-difficulty" id="qDifficultyTag"></span>
+      </div>
+      <h2 class="question-text" id="questionText"></h2>
+      <div class="options-list" id="optionsList"></div>
+    </div>
+
+    <div class="exam-nav">
+      <button class="btn-nav" id="prevBtn">‹ قبلی</button>
+      <button class="btn-nav flag" id="flagBtn">🚩 علامت‌گذاری برای مرور</button>
+      <button class="btn-nav" id="nextBtn">بعدی ›</button>
+    </div>
+
+    <button class="btn-submit" id="submitExamBtn">پایان آزمون و مشاهده‌ی نتیجه</button>
+
+    <div class="question-jump" id="questionJump"></div>
+  </section>
+
+  <!-- ============ RESULTS SCREEN ============ -->
+  <section id="resultsScreen" class="exam-section" style="display:none">
+    <div class="result-summary" id="resultSummary"></div>
+    <div class="result-breakdown" id="resultBreakdown"></div>
+    <button class="btn-start" id="retryBtn">آزمون جدید</button>
+
+    <h2 class="answer-key-title">📘 پاسخ‌نامه‌ی آموزشی کامل</h2>
+    <p class="answer-key-desc">برای هر سوال، دلیل صحیح‌بودن پاسخ درست و دام‌های رایج هر گزینه‌ی غلط توضیح داده شده است.</p>
+    <div id="answerKeyList"></div>
+  </section>
+
+</main>
+
+<footer class="exam-footer">
+  <p>ابزار آموزشی داخلی انجمن علمی رادیولوژی — فقط برای اهداف آموزشی و تمرینی.</p>
+</footer>
+
+<script src="exam-data.js"></script>
+<script src="exam.js"></script>
+</body>
+</html>
