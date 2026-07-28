@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کانال و چت گروهی انجمن | شبکه انجمن‌های رادیولوژی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="room.css">
+</head>
+<body>
+
+<header class="rm-header">
+  <div class="rm-header-inner">
+    <a href="../index.html" class="rm-brand"><span class="rm-brand-mark">☢</span> شبکه انجمن‌های رادیولوژی</a>
+    <span class="rm-org-name" id="orgNameTag">در حال بارگذاری...</span>
+  </div>
+</header>
+
+<main id="roomMain" style="display:none">
+
+  <div class="rm-bio" id="rmBio">
+    <img class="rm-bio-photo" id="rmBioPhoto" src="" alt="" style="display:none">
+    <div class="rm-bio-photo rm-bio-photo-placeholder" id="rmBioPhotoPlaceholder">🏛️</div>
+    <div class="rm-bio-text">
+      <h2 id="rmBioName"></h2>
+      <p id="rmBioAbout" class="rm-bio-about"></p>
+    </div>
+    <button class="btn-rm-outline" id="editBioBtn" style="display:none">✏️ ویرایش بیو انجمن</button>
+  </div>
+
+  <div class="rm-tabs">
+    <button class="rm-tab active" data-tab="channel">📢 کانال انجمن</button>
+    <button class="rm-tab" data-tab="chat">💬 چت گروهی</button>
+  </div>
+
+  <!-- ============ CHANNEL ============ -->
+  <section class="rm-panel active" id="panel-channel">
+    <div class="rm-channel-toolbar">
+      <span class="rm-hint">کانال فقط برای اطلاعیه‌های رسمی دبیر انجمن است — اعضا فقط می‌خوانند.</span>
+      <button class="btn-rm-outline" id="secretaryLoginBtn">🔐 ورود دبیر برای ارسال پست</button>
+    </div>
+
+    <form class="rm-composer" id="channelComposer" style="display:none">
+      <textarea name="message" placeholder="متن اطلاعیه..." required></textarea>
+      <div class="rm-composer-row">
+        <label class="rm-file-btn">
+          📎 افزودن عکس/فایل
+          <input type="file" id="channelFileInput" accept="image/*,.pdf,.doc,.docx,.zip">
+        </label>
+        <span class="rm-file-name" id="channelFileName"></span>
+        <button type="submit" class="btn-rm-primary">ارسال در کانال 🚀</button>
+      </div>
+    </form>
+
+    <div class="rm-channel-list" id="channelList"></div>
+  </section>
+
+  <!-- ============ GROUP CHAT ============ -->
+  <section class="rm-panel" id="panel-chat">
+    <div class="rm-chat-wrap">
+      <div class="rm-chat-messages" id="chatMessages"></div>
+      <form class="rm-chat-composer" id="chatComposer">
+        <label class="rm-file-btn small">
+          📎
+          <input type="file" id="chatFileInput" accept="image/*,.pdf,.doc,.docx,.zip">
+        </label>
+        <input type="text" name="message" id="chatMessageInput" placeholder="پیام خود را بنویس...">
+        <button type="submit" class="btn-rm-primary">ارسال</button>
+      </form>
+      <span class="rm-file-name" id="chatFileName"></span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ DISPLAY-NAME GATE (for chat) ============ -->
+<div class="rm-modal" id="nameGateModal">
+  <div class="rm-modal-inner">
+    <h3>قبل از ورود، خودت رو معرفی کن</h3>
+    <p class="rm-modal-desc">این نام برای پیام‌های تو در کانال و چت گروهی این انجمن نمایش داده می‌شود.</p>
+    <form id="nameGateForm">
+      <input type="text" id="displayNameInput" placeholder="نام و نام خانوادگی" required>
+      <button type="submit" class="btn-rm-primary">ورود به اتاق انجمن</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ SECRETARY LOGIN MODAL ============ -->
+<div class="rm-modal" id="secretaryLoginModal">
+  <div class="rm-modal-inner">
+    <button class="rm-modal-close" id="secretaryLoginClose">✕</button>
+    <h3>ورود دبیر انجمن</h3>
+    <p class="rm-modal-desc">با همان نام‌کاربری/رمز پنل انجمن وارد شوید تا بتوانید در کانال پست بگذارید.</p>
+    <form id="secretaryLoginForm">
+      <input type="text" name="username" placeholder="نام کاربری" required>
+      <input type="password" name="password" placeholder="رمز عبور" required>
+      <button type="submit" class="btn-rm-primary">ورود</button>
+      <p class="rm-modal-note" id="secretaryLoginNote"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ EDIT BIO MODAL ============ -->
+<div class="rm-modal" id="editBioModal">
+  <div class="rm-modal-inner">
+    <button class="rm-modal-close" id="editBioClose">✕</button>
+    <h3>ویرایش بیوگرافی انجمن</h3>
+    <p class="rm-modal-desc">این عکس و متن برای همه‌ی بازدیدکنندگان این اتاق نمایش داده می‌شود.</p>
+    <form id="editBioForm">
+      <label class="rm-file-btn" style="align-self:center">
+        🖼️ انتخاب عکس پروفایل
+        <input type="file" id="bioPhotoInput" accept="image/*">
+      </label>
+      <span class="rm-file-name" id="bioPhotoName"></span>
+      <textarea name="about" id="bioAboutInput" placeholder="چند خط درباره‌ی انجمن بنویسید..." rows="4"></textarea>
+      <button type="submit" class="btn-rm-primary">ذخیره بیو 💾</button>
+      <p class="rm-modal-note" id="editBioNote"></p>
+    </form>
+  </div>
+</div>
+
+<footer class="rm-footer">
+  <p>اتاق انجمن — شبکه انجمن‌های علمی رادیولوژی</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="room.js"></script>
+</body>
+</html>
